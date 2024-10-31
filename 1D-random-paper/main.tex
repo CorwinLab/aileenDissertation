@@ -1,0 +1,244 @@
+\documentclass[%
+ reprint,
+%superscriptaddress,
+%groupedaddress,
+%unsortedaddress,
+%runinaddress,
+%frontmatterverbose,
+%preprint,
+%showpacs,preprintnumbers,
+%nofootinbib,
+%nobibnotes,significance, quality, and general
+%bibnotes,
+ amsmath,amssymb,
+ longbibliography,
+ aps,
+%pra,
+%prb,
+%rmp,
+%prstab,
+%prstper,
+%floatfix,
+prl
+]{revtex4-1}
+
+\usepackage[normalem]{ulem}
+\usepackage{graphicx}% Include figure files
+\usepackage{bm}% bold math
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage{ulem}
+\usepackage{xr}
+
+\newcommand{\mean}[1]{\mathrm{Mean}\left(#1\right)}
+\newcommand{\var}[1]{\mathrm{Var}\left(#1\right)}
+
+
+\newcommand{\meanasy}[1]{\mathrm{Mean}^{\textrm{\tiny{asy}}}\!\left(#1\right)}
+\newcommand{\varasy}[1]{\mathrm{Var}^{\textrm{\tiny{asy}}}\!\left(#1\right)}
+
+\newcommand{\meannum}[1]{\mathrm{Mean}^{\textrm{\tiny{num}}}\!\left(#1\right)}
+\newcommand{\varnum}[1]{\mathrm{Var}^{\textrm{\tiny{num}}}\!\left(#1\right)}
+
+
+\newcommand{\ec}[1]
+{\textcolor{red}{[#1]}}
+
+\newcommand{\ic}[1]
+{\textcolor{blue}{[#1]}}
+
+\newcommand{\jh}[1]
+{\textcolor{green}{[#1]}}
+
+\def\maxnt{\mathrm{Max}^{N}_t}
+\def\envnt{\mathrm{Env}^{N}_t}
+\def\snt{\mathrm{Sam}^{N}_t}
+
+\makeatletter
+\newcommand{\hathat}[1]{%
+\begingroup%
+  \let\macc@kerna\z@%
+  \let\macc@kernb\z@%
+  \let\macc@nucleus\@empty%
+  \hat{\raisebox{.2ex}{\vphantom{\ensuremath{#1}}}\smash{\hat{#1}}}%
+\endgroup%
+}
+\makeatother
+
+\begin{document}
+
+\title{Anomalous Fluctuations of Extremes in Many-Particle Diffusion}
+\author{Jacob B. Hass$^*$, Aileen N. Carroll-Godfrey$^*$, Ivan Corwin$^\dagger$, Eric I. Corwin$^*$}
+\affiliation{$^*$Department of Physics and Materials Science Institute, University of Oregon, Eugene, Oregon 97403, USA. \\ $^\dagger$Department of Mathematics, Columbia University, New York, New York 10027, USA.}
+\date{\today}
+
+\begin{abstract}
+In many-particle diffusions, particles that move the furthest and fastest can play an outsized role in physical phenomena. A theoretical understanding of the behavior of such extreme particles is nascent. A classical model, in the spirit of Einstein's  treatment of single-particle diffusion, has each particle taking independent homogeneous random walks. This, however, neglects the fact that all particles diffuse in a common and often inhomogeneous environment that can affect their motion. A more sophisticated model treats this common environment as a space-time random biasing field which influences each particle's independent motion. While the bulk (or typical particle) behavior of these two models has been found to match to high degree, recent theoretical work of Barraquand, Corwin and Le Doussal on a one-dimensional exactly solvable version of this random environment model suggests that the extreme behavior is quite different between the two models. We transform these asymptotic (in system size and time) results into physically applicable predictions. Using high precision numerical simulations we reconcile different asymptotic phases in a manner that matches numerics down to realistic system sizes, amenable to experimental confirmation. We characterize the behavior of extreme diffusion in the random environment model by the presence of a new phase with anomalous fluctuations related to the Kardar-Parisi-Zhang universality class and equation.
+
+\end{abstract}
+
+\maketitle
+
+\noindent\emph{Introduction---}
+Our world is fueled by outliers. Information in signals is carried by the leading edge \cite{saxtonSingleparticleTrackingApplications1997a,pintoPhysicsTypeIa2000, hoflingAnomalousTransportCrowded2013a, ghoshNonuniversalTracerDiffusion2015, manzoReviewProgressSingle2015, iyer-biswasFirstPassageProcesses2016,metzlerNonBrownianDiffusionLipid2016c,  shenSingleParticleTracking2017}.
+A viral or bacterial infection is spread by the first few pathogens to enter a host and the first host to enter a new region \cite{hufnagelForecastControlEpidemics2004a,kaoVirusDiffusionIsolation2006b}.
+A species is evolved by the fittest mutations \cite{ewensMathematicalPopulationGenetics2012, metzlerFirstpassagePhenomenaTheir2014,waxmanDiffusionEquationRandom2017}. Scientific revolution is sparked by the first new idea. In all of these contexts the precipitating action is driven by the extremes among a great number of agents (varying from $N\sim 10^2$ to $N\sim 10^{60}$ depending on the context) evolving in a complex but shared environment. How does the nature of the shared environment affect these outlier behaviors? Conversely, can we infer the nature of the shared environment from the behavior of these outliers?  Despite their obvious importance, these overarching questions are still unanswered.
+
+The classical model for many-particle diffusion as independent homogeneous random walks provides an easily calculable solution, but entirely neglects the effects of the shared and likely inhomogeneous environment. This model is the basis for diffusion coefficients~\cite{einsteinUberMolekularkinetischenTheorie1905b,einsteinZurTheorieBrownschen1906a, einsteinTheoretischeBemerkungenUber1907a}, which succinctly describe the behavior of typical particles in a many-particle diffusion. A more sophisticated model treats the shared environment as a space-time random biasing field with short-range space-time correlations. Each particle thus articulates independent random walks subject to forcing by the common biasing field. While this refined model does not affect typical particle diffusion behavior \cite{rassoul-aghaQuenchedFreeEnergy2013}, it drastically impacts the behavior of extreme particles. In this work, we provide predictions for the behavior of extreme particles moving in a random and inhomogenous environment.
+We find that the variance in the position of the extreme particle is a robust and sensitive measurement of the nature of the environment and show how this variance can be understood as the sum of two contributions: the randomness present in the environment, and the sampling of random walks in that environment.  We show that by subtracting out the variance due to sampling we can produce direct measurements of the environment, inaccessible from measurements of the motion of a typical particle or of the bulk. This residual environmental variance is characterized by a novel power law that we demonstrate holds even when the number of particles is as small as a few hundred.
+
+\begin{figure}[h]
+	\includegraphics[width=.9\columnwidth]{Figure1.pdf}
+  \caption{A system of $N=10^5$ particles evolving in a given random environment. The heat map records the site occupancy density. We also plot in green the asymptotic theory mean location for the maximum particle location. Around this is a shaded region with a width of two standard deviations based on the asymptotic theory variance. This region generally contains the extreme-most particle over time. The zoomed-in inset shows the spatial locations of $N=10^2$ particles over time. Color indicates the bias (red is biased down and blue is biased up) and is chosen independently at each space-time box. The location of particles within each box is chosen for ease of visualization.}
+  \label{fig:BCModel}
+\end{figure}
+
+\medskip\noindent\emph{Background---}
+Building on observations by Brown~\cite{brownXXVIIBriefAccount1828a, brownXXIVAdditionalRemarks1829a} from 1827,  Einstein~\cite{einsteinUberMolekularkinetischenTheorie1905b,einsteinZurTheorieBrownschen1906a, einsteinTheoretischeBemerkungenUber1907a} (along with Langevin~\cite{langevinTheorieMouvementBrownien1908a}, Sutherland~\cite{sutherlandLIIViscosityGases1893,sutherlandLXXVDynamicalTheory1905} and Smoluchowski~\cite{vonsmoluchowskiZurKinetischenTheorie1906, vonsmoluchowskiNotizUiberBerechnung1915}) proposed a theory of diffusion based on modeling particles by independent random walks with variance controlled by a diffusion coefficient intrinsic to the particle/environment pair. Soon after, Perrin experimentally verified Einstein's statistical predictions \cite{perrinMouvementBrownienRealite1909a, perrinMouvementBrownienMolecules1910a}.
+
+Probing the effectiveness and limitations of Einstein's diffusion model has remained a challenge. On short time scales, particle motion is ballistic, dominated by inertia~\cite{uhlenbeckTheoryBrownianMotion1930a,huangDirectObservationFull2011,hammondDirectMeasurementBallistic2017,lukicDirectObservationNondiffusive2005, franoschResonancesArisingHydrodynamic2011, kheifetsObservationBrownianMotion2014}.
+Many physically relevant situations require the addition of new concepts to accurately model them.
+Certain diffusive processes are better modeled by Levy flights \cite{wangWhenBrownianDiffusion2012a} or other types of anomalous diffusions~\cite{bouchaudAnomalousDiffusionDisordered1990a, metzlerBrownianMotionFirstpassage2019a} instead of simple random walks. Other work has focused on active particles which inject energy into their environment~\cite{ramaswamyMechanicsStatisticsActive2010b,kanazawaLoopyLevyFlights2020a}. Further, in environments which are slowly mixing, Einstein's theory may also break down due to the presence of quenched disorder \cite{zangiFrequencydependentStokesEinsteinRelation2007, wangWhenBrownianDiffusion2012a}. Unlike the above deviations from the classical model, our approach is intended to describe generic many-particle diffusions.
+
+The random walk in random environment (RWRE) model goes back to~\cite{chernovReplicationMulticomponentChain1967, temkinOnedimensionalRandomWalks1972} (see also~\cite{havlinDiffusionDisorderedMedia1987, bolthausenTenLecturesRandom2002,sznitmanTopicsRandomWalks2004, oferRandomWalksRandom2004, hughesRandomWalksRandom1995}) and comes in two types -- long-range~\cite{kestenLimitLawRandom1975,sinaiLimitingBehaviorOneDimensional1983a,bouchaudClassicalDiffusionParticle1990a, bouchaudAnomalousDiffusionDisordered1990a, burlatskyTransientRelaxationCharged1998, ledoussalRandomWalkersOnedimensional1999} and short-range~\cite{richardsonAtmosphericDiffusionShown1926, hentschelRelativeDiffusionTurbulent1984, bouchaudDiffusionLocalizationWaves1990,  chertkovAnomalousScalingExponents1996, bernardAnomalousScalingNPoint1996, jullienRichardsonPairDispersion1999a, balkovskyIntermittentDistributionInertial2001} temporally correlated environments. We focus here on the latter. In this context, typical RWRE particles behave like Brownian motion, matching the behavior from Einstein's model~\cite{rassoul-aghaAlmostSureInvariance2005, deuschelQuenchedInvariancePrinciple2016}.
+The motion of atypical particles is controlled by large deviations of the RWRE's transition probability as first studied in ~\cite{balazsRandomAverageProcess2006}.
+
+Barraquand and Corwin~\cite{barraquandRandomwalkBetadistributedRandom2017a} discovered the exactly solvable Beta RWRE discussed extensively below and uncovered a remarkable connection between its large deviations for times of order $\log(N)$ and the statistics of the Kardar-Parisi-Zhang (KPZ) universality class~\cite{corwinKardarParisiZhang2012a, quastelOneDimensionalKPZEquation2015a}, namely the Gaussian Unitary Ensemble (GUE) Tracy-Widom distribution~\cite{tracyLevelspacingDistributionsAiry1993}. Soon after~\cite{ledoussalDiffusionTimedependentRandom2017} recognized that a phase transition should occur in the $(\log(N))^2$ time frame while~\cite{barraquandModerateDeviationsDiffusion2020a} discovered that in this frame the GUE Tracy-Widom distribution is replaced by the KPZ equation one-point distribution~\cite{kardarDynamicScalingGrowing1986a,sasamotoOneDimensionalKardarParisiZhangEquation2010,calabreseFreeenergyDistributionDirected2010,dotsenkoBetheAnsatzDerivation2010,amirProbabilityDistributionFree2011}. See~\cite{sabotRandomWalksDirichlet2017,balazsLargeDeviationsWandering2019, barraquandLargeDeviationsSticky2020, barraquandLargeDeviationsSticky2020, brockingtonBetheAnsatzSticky2021, oviedoSecondOrderFluctuations2021,korotkikhHiddenDiagonalIntegrability2022,krajenbrinkCrossoverMacroscopicFluctuation2022} for further developments. The recursion relation \eqref{eq:kolmogorov} for RWRE transition probabilities solves a discrete version of the multiplicative noise stochastic heat equation (mSHE)
+\begin{equation}
+\partial_t Z(x,t) = \frac{1}{2} \partial_x^2 Z(x,t) + \xi(x,t)Z(x,t)
+\end{equation}
+with $\xi$ space-time white noise. The logarithm of the mSHE $h(x,t)=\log Z(x,t)$ solves the KPZ equation
+\begin{equation}\label{eq:KPZ}
+\partial_t h(x,t) = \frac{1}{2} \partial_x^2 h(x,t) + \frac{1}{2}(\partial_x h(x,t))^2 + \xi(x,t).
+\end{equation}
+Hence, large deviations for RWREs, in particular beyond the solvable model and even in experimental settings, may relate to the KPZ equation and its universality class -- especially in light of the rich canon of work on KPZ universality in various contexts using theoretical~\cite{albertsIntermediateDisorderRegime2010, corwinKardarParisiZhang2012a}, numerical~\cite{PhysRevA.45.638, prolhacHeightDistributionKPZ2011}, and experimental~\cite{halpin-healyKPZCocktailShakenNot2015a} methods. The KPZ connection is  quite useful since its statistics and power-laws are well studied.
+
+\medskip
+\noindent\emph{Models for diffusion---}
+Although physical diffusion is continuous in time and (typically) occurs in three-dimensional space, here we work with discrete models in one spatial dimension. The principal reason for this choice is that it is the setting for the exactly solvable  Beta RWRE~\cite{barraquandRandomwalkBetadistributedRandom2017a} (a continuous {\it sticky Brownian motion} limit of this model exists~\cite{barraquandLargeDeviationsSticky2020}) that will enable us to compare numerical results to exact theoretical predictions.
+Beyond that, discretization is common for numerical simulations and higher dimensions are more challenging numerically due to anisotropy issues arising from the choice of lattice and due to the lack of exactly solvable models, c.f. \cite{ledoussalDiffusionTimedependentRandom2017}. In real diffusion in a common environment, there will be length and time scales on which the environment decorrelates.  Our discrete model can be thought of as coarse-graining the environment in space and time onto a lattice and thus we do not expect discrete and continuous models to differ greatly for long-times and large-scales. Our model ignores any higher order interactions as we expect them to be less present in the behavior of extreme particles, for which the local density is necessarily low. Additionally, there are physical settings where particles take discrete states~\cite{fellerDiffusionProcessesGenetics1951, moranRandomProcessesGenetics1958} or evolve in quasi-one-dimensional spaces~\cite{pollardGaseousSelfDiffusionLong1948,ahmadiDiffusionQuasionedimensionalChannels2017}.
+
+We study the {\it Beta RWRE} introduced in~\cite{barraquandRandomwalkBetadistributedRandom2017a} (see Fig.~\ref{fig:BCModel}). We model the environment by a collection $\mathbf{B}= \big\{B(x,t):x\in \mathbb{Z},t\in \mathbb{Z}_{\geq 0}\big\}$ of independent identically distributed random variables all drawn from the uniform distribution on $[0,1]$. At time $t=0$ we start with $N$ particles all at site $0$. Given an instance of the environment $\mathbf{B}$ the particles proceed as follows. Each particle at $x$ and $t$ independently flips the same weighted coin which has probability $B(x,t)$ of heads (moving the particle to site $x+1$ at time $t+1$) and $1-B(x,t)$ of tails (moving to $x-1$ instead). Thus, while particles do not interact with each other, those at the same place and time are all influenced by the common environment.
+
+This model is exactly solvable when $B(x,t)$ are distributed according to the Beta distribution, $Beta(\alpha, \beta)$~\cite{barraquandRandomwalkBetadistributedRandom2017a}. For simplicity, we focus on the special case $\alpha=\beta=1$ corresponding to the uniform distribution. The classical simple symmetric random walk (SSRW) model arises in the limit $\alpha=\beta\to \infty$ where all $B(x,t)\equiv 1/2$ and the environment is deterministic.
+
+We focus on the behavior of the right-most particle at time $t$. We denote this by $\maxnt$, with $N$ the number of particles in the system. Two types of randomness affect $\maxnt$: that of the environment and that of sampling the random walks in that environment. The effect of the environment is via the transition probability $p_{\mathbf{B}}(x,t)$, the probability that a single random walker initially at $0$ will end up at $x$ at time $t$ for a given environment $\mathbf{B}$. This satisfies the recursion relationship, %(i.e., the Kolmogorov backward equation, or master equation),
+%
+\begin{align} \label{eq:kolmogorov}
+ \begin{split}
+  p_{\mathbf{B}}(x,t) = & p_{\mathbf{B}}(x-1,t-1)B(x-1,t-1) +\\
+  & p_{\mathbf{B}}(x+1,t-1)\big(1-B(x+1,t-1)\big)
+ \end{split}
+\end{align}
+%
+with initial condition $p_{\mathbf{B}}(0,0) = 1$ and $p_{\mathbf{B}}(x \neq 0,0) = 0$. Since each random walker is independent, conditional on the environment, the distribution of the ensemble of $N$ walks is determined by $p_{\mathbf{B}}(x,t)$. Given the environment $\mathbf{B}$, the probability that a single random walker is at or above $x$ at time $t$ is given by the tail probability, $P_{\mathbf{B}}(x,t) = \sum_{y\geq x} p_{\mathbf{B}}(y,t)$. This and the independence of random walkers, conditional on the environment, imply
+%
+\begin{equation}\label{eq:maxpb}
+\mathrm{Prob}_{\mathbf{B}}(\maxnt \leq x) = \big(1-P_{\mathbf{B}}(x,t)\big)^N,
+\end{equation}
+%
+where the left-hand side is the probability, given the environment $\mathbf{B}$, that $\maxnt \leq x$.
+
+We study how $\maxnt$ varies upon sampling a new environment and random walkers therein. Eq. \eqref{eq:maxpb} suggests that a good proxy for $\maxnt$ is the location $\envnt$ of the $1/N$-quantile of $P_{\mathbf{B}}(x,t)$, i.e., $\envnt$ equals the maximal $x$ such that $P_{\mathbf{B}}(x,t)>1/N$. Notice that $\envnt$ only accounts for the variation due to the environment. The variation due to sampling in that environment is denoted $\snt$ and defined by $\maxnt = \envnt + \snt$. We use the notation $\mean{\bullet}$ and $\var{\bullet}$ for the mean and variance of a quantity $\bullet$ (e.g. $\maxnt, \envnt,\snt$) averaged over both the environment and the sampling of random walkers in that environment.
+
+\medskip\noindent\emph{Numerical Methods---}
+We numerically simulate our models for system sizes varying from $N=10^2$ to $N=10^{300}$. We consider such large and physically unrealistic system sizes like $10^{300}$ in order to see how asymptotic theory applies for as wide a  range as possible of finite system sizes. We evolve the system for times from $t=0$ to $t= 5000 \log(N)$.  As explained below, $\log(N)$ and $(\log(N))^2$ set key timescales and our range of times ensure that for all choices of $N$, we encompass these scales. We simulate such large systems by tracking occupation variables instead of individual particle trajectories. In particular, if there are $N(x,t)$ particles at site $x$ at time $t$, then the number that move to site $x+1$ is binomially distributed with $N(x,t)$ samples and success probability $B(x,t)$ (the remainder move to site $x-1$). We sample these binomial distributions utilizing quadruple-precision floating point numbers and making approximations to the binomial distribution when dealing with sizes beyond our precision limits, as described in \cite{SeeSupplementalMaterial}. The rightmost particle location (identified by the maximal $x$ with $N(x,t)\geq 1$) at each time represents a sample of $\maxnt$. By repeatedly sampling new environments along with random walk occupation variables $N(x,t)$ therein we numerically measure $\var{\maxnt}$. To distinguish from the true value we denote this numerically measured variance by $\varnum{\maxnt}$ and plot it in Fig. \ref{fig:MaxVar}. In like fashion, we measure $\varnum{\envnt}$ for each sampled environment by using Eq. \ref{eq:kolmogorov} to compute $p_{\mathbf{B}}(x,t)$.  Fig. \ref{fig:QuantileVar} shows $\varnum{\envnt}$ as a function of time (see \cite{SeeSupplementalMaterial} for $\meannum{\maxnt}$ and $\meannum{\envnt}$). The data presented in Fig. \ref{fig:MaxVar} and \ref{fig:QuantileVar} took approximately three weeks to run in parallel on 500 cores of the University of Oregon high performance computing cluster, Talapas.
+
+\begin{figure}[h]
+ \includegraphics[width=\columnwidth]{MaxVar.pdf}
+ \caption{Plots of $\varnum{\maxnt}$ (solid) computed over 10000, 5000, 1000, 500 and 500 environments (respectively) and  $\varasy{\maxnt}$ (dashed) for $N=10^2, 10^{7}, 10^{24}, 10^{85}, 10^{300}$}
+ \label{fig:MaxVar}
+\end{figure}
+
+\begin{figure}[h]
+	\includegraphics[width=\columnwidth]{QuantileVar.pdf}
+	\caption{Plots of $\varnum{\envnt}$ (transparent solid) computed over 500 environments, $\varasy{\envnt}$ (dashed), and $\varnum{\maxnt} - \varasy{\snt}$ (dark solid) smoothed in each $1/25^{th}$ of a decade for $N=10^2, 10^{7}, 10^{24}, 10^{85},10^{300}$. The three curves agree as shown in the zoomed-in inset.}
+	\label{fig:QuantileVar}
+\end{figure}
+
+\medskip\noindent\emph{Asymptotic Theory Results---}
+We describe asymptotic results on the behavior of $\maxnt$, $\envnt$ and $\snt$ as both $N$ and $t$ tend to infinity in different limits. Given a fixed relationship between $t$ and $\log(N)$ such as $t/\log(N)=\hat{t}$ or  $t/\log(N)^2=\hathat{t}$ for $\hat{t}$ or $\hathat{t}$ fixed, we write $f(N,t)\gg g(N,t)$ if $f(N,t)/g(N,t)$ tends to infinity as $N$ and $t$ do subject to their relationship. We use the notation $\varasy{\bullet}$ to denote the asymptotic theory formula for the variance of $\bullet$, interpolated back to finite $N$ and $t$. SSRW theory follows from Stirling's formula while asymptotic results for the RWRE rely on tools from quantum integrable systems~\cite{barraquandRandomwalkBetadistributedRandom2017a, barraquandModerateDeviationsDiffusion2020a,krajenbrinkCrossoverMacroscopicFluctuation2022} and are derived first for $\envnt$ and then for $\maxnt$ and $\snt$.
+
+\noindent\textbf{SSRW $\boldsymbol{\maxnt}$:}
+For $t/\log(N)=\hat{t}$ with fixed $\hat{t} < (\log 2)^{-1}$, we have $N\gg 2^t$ and hence with very high probability every reachable site in the lattice at time $t$ is occupied, hence $\var{\maxnt}\approx 0$. When $\hat{t} > (\log 2)^{-1}$, we show  in \cite{SeeSupplementalMaterial} that $\maxnt$ is asymptotically a Gumbel random variable. For $\hat{t}$ large, $\varasy{\maxnt} \approx \frac{\pi^2}{12} \frac{t}{\log(N)}$.
+
+%the location of the maximal random walk at time $t$ will likely occur at a position significantly below $t$ with non-trivial fluctuations which can be calculated by combining \eqref{eq:maxpb} with Stirling's formula for binomial coefficient asymptotics. Doing this in \cite{SeeSupplementalMaterial} we see that $\maxnt$ is asymptotically distributed as a Gumbel random variable. In particular, for $t\gg \log(N)$, $\varasy{\maxnt} \approx \frac{\pi^2}{12} \frac{t}{\log(N)}$.
+
+\noindent\textbf{RWRE $\boldsymbol{\envnt}$:}
+For $t/\log(N)=\hat{t}$ with fixed $\hat{t}<1$, $\var{\envnt}\approx 0$. To see this, note that $P_\mathbf{B}(t,t) = B_{0,0} \cdots B_{t-1,t-1}$. Taking logs and applying the central limit theorem shows that $\log \big(P_\mathbf{B}(t,t)\big) \approx -t  + t^{1/2} G$ for $G$ a standard Gaussian. This implies that $P_\mathbf{B}(t,t) \approx e^{-t}\gg 1/N$. Thus the RWRE stops saturating the lattice when $t= \log(N)$ plus a order $(\log(N))^{1/2}$ Gaussian fluctuation. For the SSRW this happens at time $\log_2(N)$ plus order one fluctuations.
+
+
+$\var{\envnt}$ displays two asymptotic regimes. For fixed $t/\log(N)=\hat{t}>1$, $\var{\envnt}$ takes  asymptotic form,
+\begin{equation}\label{eqlogN}
+V_1(N, t):=\Big(\frac{\log(N)}{t}\Big)^{2/3} \sigma_{\chi}^2 \frac{2^{2/3}\big(1-\frac{\log(N)}{t}\big)^{4/3}}{1- \big(1- \frac{\log (N)}{t}\big)^2},
+\end{equation}
+where $\sigma_{\chi}^2\approx~0.813$ is the variance of the GUE Tracy-Widom distribution \cite{prahoferUniversalDistributionsGrowth2000, tracyLevelspacingDistributionsAiry1993}. As shown in \cite{SeeSupplementalMaterial}, this follows from the result of \cite{barraquandRandomwalkBetadistributedRandom2017a}: For $v\in(0,1)$, $\log P_\mathbf{B}(vt,t)=-t I(v) + t^{1/3} \sigma(v)\chi_t$ where $I(v) = 1-\sqrt{1-v^2}$, $\sigma(v) = (2I(v)^2/(1-I(v)))^{1/3}$ and $\chi_t$ is random converging to the GUE Tracy-Widom distribution as $t$ goes to infinity.
+
+For $t/(\log(N))^2\!=\!\hathat{t}$,  $\var{\envnt}$ takes asymptotic form
+\begin{equation}\label{eqlogNsq}
+V_2(N, t):=\frac{t}{2\log(N)} \cdot \var{h\Big(0,\frac{4 (\log(N))^2}{t}\Big)},
+\end{equation}
+where $h(0,s)$ is the height at $0$ and time $s$ of the {\it narrow wedge} solution to the KPZ equation \eqref{eq:KPZ}. As shown in \cite{SeeSupplementalMaterial}, this follows from \cite{barraquandModerateDeviationsDiffusion2020a}: For $v\in (0,\infty)$,
+$
+\log P_\mathbf{B}(vt^{3/4},t) \approx -\frac{v^2t^{1/2}}{2} -\log(t)/4+\log(v) - v^4/12 + h(0,v^4).
+$
+
+Interpolating between these regimes, and extrapolating past $(\log(N))^2$ (see also \cite{krajenbrinkCrossoverMacroscopicFluctuation2022}) we find two power-laws,
+\begin{equation}\label{eq:varqnt}
+\varasy{\envnt} \approx
+    \begin{cases}
+    \sigma_{\chi}^2 (\frac{\log(N)}{2})^{\frac{1}{3}} t^{\frac{1}{3}}& 1 \ll \frac{t}{\log(N)}\ll \log(N),\\
+    \frac{1}{2}\pi^{\frac{1}{2}} t^{\frac{1}{2}}& \frac{t}{\log(N)}\gg \log(N).
+    \end{cases}
+\end{equation}
+For finite $N$ and $t$ these regimes have a gentle crossover that we capture by setting
+$
+\varasy{\envnt} := I(N,t) V_1(N, t)+\big(1-I(N,t)\big) V_2(N, t)
+$
+where $I(N,t) := \frac{1}{2} \cdot \left(1-\text{erf}\left(\frac{t-(\log(N))^{3/2}}{(\log(N))^{4/3}}\right)\right)$ (with  $\text{erf}(x)= 2/\sqrt{\pi} \int_{0}^{x} e^{-t^2}dt$ the error function) interpolates from $1$ to $0$ over an interval of width $(\log(N))^{4/3}$ around $(\log(N))^{3/2}$.
+
+
+\noindent\textbf{RWRE $\boldsymbol{\snt}$ and $\boldsymbol{\maxnt}$:}
+We identify the additional contribution from sampling the many-particle diffusion given an environment.
+Using Eq. \eqref{eq:maxpb} and Taylor expansion of the results of \cite{barraquandRandomwalkBetadistributedRandom2017a} and \cite{barraquandModerateDeviationsDiffusion2020a} quoted above, \cite{SeeSupplementalMaterial} shows that for $t/\log(N)=\hat{t}>1$ the sample fluctuation $\snt$ is of Gumbel type with variance
+%
+\begin{equation}\label{eq:varnst}
+\varasy{\snt} = \frac{\pi^2}{6} \frac{\big(\frac{t}{\log(N)} -1\big)^2}{2\frac{t}{\log(N)} -1}\approx \frac{\pi^2}{12} \frac{t}{\log(N)}
+\end{equation}
+as $\hat{t}$ grows. This limit matches the behavior of the SSRW model. In \cite{SeeSupplementalMaterial} we also show that $\snt$ is asymptotically independent of $\envnt$, thus
+\begin{equation}\label{eq:varadd}
+\var{\maxnt} \approx \var{\envnt} + \var{\snt}.
+\end{equation}
+
+\begin{figure}[h]
+  \includegraphics[width=\columnwidth]{MaxQuantComp.pdf}
+  \caption{Variance of the maximal particle $\var{\maxnt}$ (red), environment $\var{\envnt}$ (blue), and sampling $\var{\snt}$ (green) for RWRE, and variance of the maximal particle  $\var{\maxnt}$ (purple) for SSRW, all for $N=10^7$. Dashed lines are $\varasy{\bullet}$, while solid lines are $\varnum{\bullet}$. $\varnum{\maxnt} - \varasy{\snt}$ (orange; smoothed as in Fig. \ref{fig:QuantileVar}) closely matches the environment curve (blue).}
+  \label{fig:RWREAssembly}
+\end{figure}
+
+\medskip\noindent\emph{Comparison of Numerical and Theoretical Results---}
+Fig. \ref{fig:MaxVar} and \ref{fig:QuantileVar} show that the asymptotic theoretical predictions for $\var{\maxnt}$ and $\var{\envnt}$ are in excellent agreement with the numerical measurements.  Fig. \ref{fig:QuantileVar} further shows that we reliably recover $\var{\envnt}$ using $\varnum{\maxnt} - \varasy{\snt}$, as expected from Eq. \ref{eq:varadd}. Notably, while these results were derived for asymptotically large $\log(N)$ and $t$, they hold nearly perfectly down to $N=10^{2}$.
+Fig. \ref{fig:QuantileVar} reveals that while we readily see the long-time $t^{1/2}$ power-law for $\var{\envnt}$ from Eq. \ref{eq:varqnt}, the $t^{1/3}$ power-law is elusive. Although the full characterization of the short-time regime is in excellent agreement with the numerical results, the $t^{1/3}$ power-law is difficult to capture since the transitional window of $\log(N)$ to $(\log(N))^2$ is too narrow for realistic sizes of $N$, even up to $N=10^{300}$. By measuring the long-time $t^{1/2}$ power law, we measure the short-time scaling behavior of the KPZ equation up to a prefactor using Eq. \ref{eqlogNsq}. Fig. \ref{fig:RWREAssembly} shows the tight matching of the asymptotic theory curves and numerically measured values for the variance of $\maxnt, \envnt$ and $\snt$ for a given value of $N=10^7$. Notice that for $t\approx \log(N)$ the asymptotic theory and numerical values for the variance of $\snt$ do not fit as well as for large $t$. This is likely a result of finite-size effects and quickly goes away at larger values of $t$ or when $N$ increases. The fit for $N=10^{300}$ in Fig. \ref{fig:MaxVar} and \ref{fig:QuantileVar} remains tight over the entire range of $t$.
+
+\medskip\noindent\emph{Conclusion---}
+The link between RWREs and KPZ universality with its wealth of theoretical, numerical and experimental evidence strongly suggests that aspects of the picture presented here will persist beyond discrete and solvable models, even to experiments. When $t$ is of order $\log(N)$, variances should be non-universal, depending in a difficult to determine way on the nature of the environment. By contrast, when $t\gg\log(N)$, we anticipate that the scaling exponents and functional forms we have identified for the variances of $\envnt,\snt$ and $\maxnt$ will be universal, as will the relation \eqref{eq:varadd}. The leading coefficients  in Eq. \eqref{eq:varqnt} should be non-universal and hold within them all of the accessible information about the correlation structure of the environment -- we call these {\it extreme diffusion coefficients}. Further theoretical study, such as for the general $\alpha,\beta$ Beta RWRE model, should provide a natural first test of this universal picture and an understanding of how the extreme diffusion coefficients relate to the microscopic environment. A continuum model that should provide an even wider testing-ground amenable to numerics involves particles $x_i(t)$ for $i=1,2,\ldots$ satisfying $dx_i(t) = F(x_i(t),t)dt + D(x_i(t),t) dB_i(t)$ where $F(x,t)$ and $D(x,t)$ are random forcing (as in \cite{ledoussalDiffusionTimedependentRandom2017}) and diffusivity (generalizing diffusing diffusivity, c.f. \cite{PhysRevX.7.021002}) fields common to all particles while $B_i$ are  Brownian motions independent between different $i$. Changing the correlation structures of $F$ and $D$ will probe the transition between temporally mixing versus quenched environments, which should have very different behavior (c.f. \cite{PhysRevLett.61.500,PhysRevLett.62.3097}) and warrants further study. Considering higher dimensions as in~\cite{ledoussalDiffusionTimedependentRandom2017} may lead to further theory that better model real physical systems. A study of higher order cumulants may reveal other ways to probe the hidden environment, although they may be harder to observe numerically or experimentally.
+
+In physical systems it is impossible to directly measure the environmental variance. However, an indirect measurement can be performed via the approach presented here by using $\var \envnt\approx \var \maxnt - \var \snt$. The sample variance $\var \snt$ is now computed using
+$
+ \var \snt = \frac{\pi^2 D}{6} \frac{t}{\log(N)}
+$
+where $D$ is the diffusion coefficient. One could repeatedly track the motion of the leading edge of diffusing particles in a system of colloids confined to a quasi-1D channel thereby directly measuring $\var \maxnt$ for system sizes ranging from $N ~ 10^2$ to $N ~ 10^{10}$. Further, one can also perform complementary measurements on the time of first passage of diffusing objects, which opens the door to experiments done on all manner of diffusing objects, including light or sound diffusing through a scattering medium, dye molecules in a fluid, or any other object whose first passage can be measured.
+By measuring the environmental variance and extreme diffusion coefficient we will gain a new microscope through which to probe the hidden nature of the underlying environment in which the diffusion occurs. Our work should serve as a guide in the development and analysis of novel experimental measurements of the extreme behavior of many-particle diffusion.
+
+\medskip\noindent\emph{Acknowledgements---}
+We thank G. Barraquand and P. Le Doussal for discussions and S. Prolhac for providing numerics for $\var{h(0,s)}$.
+This work was funded under the W.M. Keck Foundation Science and Engineering grant on ``Extreme Diffusion''.
+I.C. also wishes to acknowledge ongoing support from the NSF through DMS:1811143 and DMS:1937254, the Simon Foundation through a Simons Fellowship in Mathematics (Grant No. 817655), and the Packard Foundation Fellowship for Science and Engineering. Much of this work was performed while I.C. held a Miller Visiting Professorship from the Miller Institute for Basic Research in Science, and while in residence at the Mathematical Sciences Research Institute in Berkeley, California (NSF Grant No. 1440140).
+E.I.C. wishes to acknowledge ongoing support from the Simons Foundation for the collaboration Cracking the Glass Problem via award 454939. This work benefited from access to the University of Oregon high performance computing cluster, Talapas.
+
+\bibliographystyle{unsrt}
+\bibliography{main}
+
+\end{document}
