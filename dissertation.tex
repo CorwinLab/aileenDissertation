@@ -1,0 +1,74 @@
+\documentclass[dissertation, copyright, numbers, sort&compress, notables]{uothesis}
+
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{bm}% bold math
+\usepackage{float}
+\usepackage{physics} %bra-ket
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{placeins}
+\usepackage{url}
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{bm}% bold mathu
+\usepackage{bibentry}
+\usepackage[normalem]{ulem}
+\usepackage[noabbrev]{cleveref}
+
+%\usepackage[justification=justified]{subcaption} 
+
+\usepackage[dvipsnames]{xcolor}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\of}[1]{\left(#1\right)}
+\newcommand{\pd}{\partial}
+
+\newcommand{\eps}{\varepsilon}
+\newcommand{\utot}{U}
+\newcommand{\mpv}{\bar{V}_{\mathrm{p}}} %mean particle volume
+
+%????????????????
+%\DeclareUnicodeCharacter{2009}{\,} 
+
+\newcommand{\ec}[1]
+{\textcolor{red}{#1}}
+
+\definecolor{mygray}{gray}{0.4}
+\newcommand{\greytext}[1]
+{\textcolor{mygray}{#1}}
+
+\newcommand{\jamesemph}[1]
+{\textcolor{blue}{#1}}
+
+
+%%%PREFATORY PAGES
+\include{cover}
+\include{abstract}
+\include{acknowledgements}  %%acknowledgements page optional
+\include{cv}
+%\include{dedication} %%dedication page optional
+
+%%%MAIN DOCUMENT
+\begin{document}
+\maketitle
+
+
+
+
+
+%%%CHAPTERS
+\include{introduction}
+\include{1Drandompaper}
+\include{photonpaper}
+\include{extrawork}
+\include{conclusion}
+
+%%%APPENDICES
+%%BIBILIOGRAPHY
+\bibliographystyle{unsrtnat}
+\bibliography{1drandom}
+%\bibliography{dissertation}
+\end{document}
