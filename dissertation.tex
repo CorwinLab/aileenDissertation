@@ -17,6 +17,15 @@
 \usepackage{bibentry}
 \usepackage[normalem]{ulem}
 \usepackage[noabbrev]{cleveref}
+\usepackage{graphicx}% Include figure files
+\usepackage{soul}
+
+%\usepackage{hyperref}% add hypertext capabilities
+%\usepackage[mathlines]{lineno}% Enable numbering of text and display math
+%\linenumbers\relax % Commence numbering lines
+\newcommand{\ec}[1]{\textcolor{purple}{{#1}}}
+\newcommand{\acg}[1]{\textcolor{violet}{{#1}}}
+\newcommand{\ext}[1]{\textcolor{red}{[{#1}]}}
 
 %\usepackage[justification=justified]{subcaption} 
 
@@ -33,8 +42,6 @@
 %????????????????
 %\DeclareUnicodeCharacter{2009}{\,} 
 
-\newcommand{\ec}[1]
-{\textcolor{red}{#1}}
 
 \definecolor{mygray}{gray}{0.4}
 \newcommand{\greytext}[1]
@@ -45,10 +52,10 @@
 
 
 %%%PREFATORY PAGES
-\include{cover}
-\include{abstract}
-\include{acknowledgements}  %%acknowledgements page optional
-\include{cv}
+\include{0_cover}
+\include{0_abstract}
+\include{0_acknowledgements}  %%acknowledgements page optional
+\include{0_cv}
 %\include{dedication} %%dedication page optional
 
 %%%MAIN DOCUMENT
@@ -60,15 +67,14 @@
 
 
 %%%CHAPTERS
-\include{introduction}
-\include{1Drandompaper}
-\include{photonpaper}
-\include{extrawork}
-\include{conclusion}
+\include{ch0_introduction}
+\include{ch1_1Drandompaper}
+\include{ch2_photonpaper}
+\include{ch3_extrawork}
+\include{ch4_conclusion}
 
 %%%APPENDICES
 %%BIBILIOGRAPHY
 \bibliographystyle{unsrtnat}
-\bibliography{1drandom}
-%\bibliography{dissertation}
+\bibliography{thesis}
 \end{document}
