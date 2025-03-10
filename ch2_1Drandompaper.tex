@@ -42,9 +42,11 @@ The classical model for many-particle diffusion as independent homogeneous rando
 We find that the variance in the position of the extreme particle is a robust and sensitive measurement of the nature of the environment and show how this variance can be understood as the sum of two contributions: the randomness present in the environment, and the sampling of random walks in that environment.  We show that by subtracting out the variance due to sampling we can produce direct measurements of the environment, inaccessible from measurements of the motion of a typical particle or of the bulk. This residual environmental variance is characterized by a novel power law that we demonstrate holds even when the number of particles is as small as a few hundred.
 
 \begin{figure}[h]
-	\includegraphics[width=.9\columnwidth]{Figures/Figure1.pdf}
-  \caption{A system of $N=10^5$ particles evolving in a given random environment. The heat map records the site occupancy density. We also plot in green the asymptotic theory mean location for the maximum particle location. Around this is a shaded region with a width of two standard deviations based on the asymptotic theory variance. This region generally contains the extreme-most particle over time. The zoomed-in inset shows the spatial locations of $N=10^2$ particles over time. Color indicates the bias (red is biased down and blue is biased up) and is chosen independently at each space-time box. The location of particles within each box is chosen for ease of visualization.}
+\begin{center}
+\includegraphics[width=.9\columnwidth]{Figures/Figure1.pdf}
+\caption{A system of $N=10^5$ particles evolving in a given random environment. The heat map records the site occupancy density. We also plot in green the asymptotic theory mean location for the maximum particle location. Around this is a shaded region with a width of two standard deviations based on the asymptotic theory variance. This region generally contains the extreme-most particle over time. The zoomed-in inset shows the spatial locations of $N=10^2$ particles over time. Color indicates the bias (red is biased down and blue is biased up) and is chosen independently at each space-time box. The location of particles within each box is chosen for ease of visualization.}
   \label{fig:BCModel}
+\end{center}
 \end{figure}
 
 \section{Background}
@@ -98,15 +100,19 @@ We study how $\maxnt$ varies upon sampling a new environment and random walkers 
 We numerically simulate our models for system sizes varying from $N=10^2$ to $N=10^{300}$. We consider such large and physically unrealistic system sizes like $10^{300}$ in order to see how asymptotic theory applies for as wide a  range as possible of finite system sizes. We evolve the system for times from $t=0$ to $t= 5000 \log(N)$.  As explained below, $\log(N)$ and $(\log(N))^2$ set key timescales and our range of times ensure that for all choices of $N$, we encompass these scales. We simulate such large systems by tracking occupation variables instead of individual particle trajectories. In particular, if there are $N(x,t)$ particles at site $x$ at time $t$, then the number that move to site $x+1$ is binomially distributed with $N(x,t)$ samples and success probability $B(x,t)$ (the remainder move to site $x-1$). We sample these binomial distributions utilizing quadruple-precision floating point numbers and making approximations to the binomial distribution when dealing with sizes beyond our precision limits, as described in \cite{SeeSupplementalMaterial}. The rightmost particle location (identified by the maximal $x$ with $N(x,t)\geq 1$) at each time represents a sample of $\maxnt$. By repeatedly sampling new environments along with random walk occupation variables $N(x,t)$ therein we numerically measure $\var{\maxnt}$. To distinguish from the true value we denote this numerically measured variance by $\varnum{\maxnt}$ and plot it in Fig. \ref{fig:MaxVar}. In like fashion, we measure $\varnum{\envnt}$ for each sampled environment by using Eq. \ref{eq:kolmogorov} to compute $p_{\mathbf{B}}(x,t)$.  Fig. \ref{fig:QuantileVar} shows $\varnum{\envnt}$ as a function of time (see \cite{SeeSupplementalMaterial} for $\meannum{\maxnt}$ and $\meannum{\envnt}$). The data presented in Fig. \ref{fig:MaxVar} and \ref{fig:QuantileVar} took approximately three weeks to run in parallel on 500 cores of the University of Oregon high performance computing cluster, Talapas.
 
 \begin{figure}[h]
- \includegraphics[width=\columnwidth]{Figures/MaxVar.pdf}
+\begin{center}
+ \includegraphics[width=0.9\columnwidth]{Figures/MaxVar.pdf}
  \caption{Plots of $\varnum{\maxnt}$ (solid) computed over 10000, 5000, 1000, 500 and 500 environments (respectively) and  $\varasy{\maxnt}$ (dashed) for $N=10^2, 10^{7}, 10^{24}, 10^{85}, 10^{300}$}
  \label{fig:MaxVar}
+\end{center}
 \end{figure}
 
 \begin{figure}[h]
-	\includegraphics[width=\columnwidth]{Figures/QuantileVar.pdf}
+\begin{center}
+	\includegraphics[width=0.9\columnwidth]{Figures/QuantileVar.pdf}
 	\caption{Plots of $\varnum{\envnt}$ (transparent solid) computed over 500 environments, $\varasy{\envnt}$ (dashed), and $\varnum{\maxnt} - \varasy{\snt}$ (dark solid) smoothed in each $1/25^{th}$ of a decade for $N=10^2, 10^{7}, 10^{24}, 10^{85},10^{300}$. The three curves agree as shown in the zoomed-in inset.}
 	\label{fig:QuantileVar}
+\end{center}
 \end{figure}
 
 \section{Asymptotic Theory Results}
@@ -164,9 +170,11 @@ as $\hat{t}$ grows. This limit matches the behavior of the SSRW model. In \cite{
 \end{equation}
 
 \begin{figure}[h]
-  \includegraphics[width=\columnwidth]{Figures/MaxQuantComp.pdf}
-  \caption{Variance of the maximal particle $\var{\maxnt}$ (red), environment $\var{\envnt}$ (blue), and sampling $\var{\snt}$ (green) for RWRE, and variance of the maximal particle  $\var{\maxnt}$ (purple) for SSRW, all for $N=10^7$. Dashed lines are $\varasy{\bullet}$, while solid lines are $\varnum{\bullet}$. $\varnum{\maxnt} - \varasy{\snt}$ (orange; smoothed as in Fig. \ref{fig:QuantileVar}) closely matches the environment curve (blue).}
-  \label{fig:RWREAssembly}
+\begin{center}
+\includegraphics[width=0.9\columnwidth]{Figures/MaxQuantComp.pdf}
+\caption{Variance of the maximal particle $\var{\maxnt}$ (red), environment $\var{\envnt}$ (blue), and sampling $\var{\snt}$ (green) for RWRE, and variance of the maximal particle  $\var{\maxnt}$ (purple) for SSRW, all for $N=10^7$. Dashed lines are $\varasy{\bullet}$, while solid lines are $\varnum{\bullet}$. $\varnum{\maxnt} - \varasy{\snt}$ (orange; smoothed as in Fig. \ref{fig:QuantileVar}) closely matches the environment curve (blue).}
+\label{fig:RWREAssembly}
+\end{center}
 \end{figure}
 
 \section{Comparison of Numerical and Theoretical Results}
