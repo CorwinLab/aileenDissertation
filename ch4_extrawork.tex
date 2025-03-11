@@ -7,6 +7,7 @@
 Understanding outliers is the key to describing many important phenomena, including biological processes dependent on the interactions between strands of DNA, patient zero spreading a virus to a new area in a pandemic, many chemical processes, and how microscopic price fluctuations relate to long-term macroscopic trends in the stock market \cite{zhang_first-passage_2016, hufnagel_forecast_2004, redner_8_2001, liu_anchoring_2017}. How do we predict the behavior of these outliers? In diffusive environments, where many particles spread outward from their originating source, we can use Einstein’s theory of diffusion to describe the bulk behavior of the particles \cite{einstein_uber_1905, von_smoluchowski_zur_1906}. Einstein described diffusion as particles undergoing independent random walks. The random-walk description ignores the effect the shared environment has on the particles, resulting in its potential failure to correctly describe the diffusion of the outliers. Particles near each other should be influenced by the medium in the same way, but in Einstein’s theory of diffusion, their behavior is totally independent from one another. As a result, when analyzing the system as a whole, the distributions of outlier particle locations and first passage times will differ from those predicted by Einstein’s theory. The objective of this work is to show this discrepancy experimentally and demonstrate the need for a new theory of extreme diffusion. This is done by studying the first passage times of micron-sized silica beads suspended in water travelling in glass capillary tubes.
  
 \section{Background}
+\acg{[determine how much of this is necessary given Chapter \ref{1Drandom}'s existence - this is mostly from comp exam and needs rewritten]}
 
 \begin{figure}[hb]
 \begin{center}
@@ -36,8 +37,10 @@ The Barraquand-Corwin model predicts the behavior of the maximum of a large numb
 \end{center}
 \end{figure*}
 
+\acg{[first draft of everything below this point]}
+
 \section{Experimental design}
-To measure EFPTs in a physical system of colloids, I developed a microscope-centirfuge system. Premise:
+Premise:
 \begin{itemize}
     \item Colloid suspensions
     \item Capillary tubes (quasi-1D, square for imaging)
@@ -49,6 +52,15 @@ To measure EFPTs in a physical system of colloids, I developed a microscope-cent
     \item Bovine whatever serum for coating the glass
     \item whatever was done to minimize air pockets
 \end{itemize}
+
+To measure EFPTs in a physical system of colloids, I developed a microscope-centirfuge system, shown in Figure \ref{fig:CADrender}. An upright fixed stage microscope (Nikon ECLIPSE FN1) is used to image silica microspheres (get the info) suspended in distilled water. We coat the interior of a small, rectantular capillary tubes (brand name and specs) that are initially 100mm in length with bovine serum albumin (info?), blowing excess serum out with pressurized air. This coating will help prevent silica microspheres from adhering to the capillary walls (cite someone that says this maybe?). We then fill the tubes with the silica suspensions, break off any air pockets, and seal the ends with capillary wax (info maybe?). We dip the now-sealed ends in superglue to provide a strong seal for when the centrifuge spins the samples down at high angular acceleration.
+
+This process is repeated for 16 capillary tubes, with each tube placed into its own channel on the centrifuge plate. Great care is taken to ensure the capillaries are as flat as possible to prevent gravity-driven flow in the solutions. Melted paraffin wax is carefully poured onto the non-imaging parts of each capillary, which, once cooled, adheres the capillaries in place in the channel. Once all 16 capillaries have been adhered, the centrifuge process may begin.
+
+A MATLAB script controls both the centrifuge servo circuit (designed and fabricated by yours truly and also john and cliff) and the camera (brand name here) for imaging. A microcontroller (Arduino Mega) controls (number) pins sending digital and analog signals to the servo circuit. 16 pins control the precision localization of the plate, while three other pins control the centrifuge/servo modes and brake. Upon starting the script, the Arduino pins and camera are initialized, and directories based on the datetime are created for data storage. The centrifuge enters run mode for a preset amount of time, where it spins at the highest attainable speed. After the time runs out, the centrifuge slows down, and the 16 position pins send it to the "16th" capillary location.
+
+Next, the centrifuge carefully pans through each location, collecting an initial "reference" image of each capillary. If all images look acceptable, the script then enters time-lapse mode. Based on a preset time gap, the centrifuge pans through each location and collects a new frame for each capillary, stabilizing each frame relative to its initial "reference" frame and writing this corrected frame to an image file that capillary's image directory. After cycling through each capillary, the script waits for the allotted time, then runs through this process again. This repeats indefinitely, or until the user ends this sequence. The final parts of the script close the camera and clear variables for the next collection.
+
  
 \section{Results}
 \begin{itemize}
