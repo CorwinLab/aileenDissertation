@@ -40,46 +40,22 @@ The Barraquand-Corwin model predicts the behavior of the maximum of a large numb
 \acg{[first draft of everything below this point]}
 
 \section{Experimental design}
-Premise:
-\begin{itemize}
-    \item Colloid suspensions
-    \item Capillary tubes (quasi-1D, square for imaging)
-    \item Centrifuge servo motor system for spinning down and cycling through for time lapse
-    \item Nikon microscope for imaging
-    \item Camera for imaging through microscope
-    \item Arduino for control through MATLAB
-    \item Image analysis via MATLAB? python? can't remember
-    \item Bovine whatever serum for coating the glass
-    \item whatever was done to minimize air pockets
-\end{itemize}
 
 To measure EFPTs in a physical system of colloids, I developed a microscope-centirfuge system, shown in Figure \ref{fig:CADrender}. An upright fixed stage microscope (Nikon ECLIPSE FN1) is used to image silica microspheres (get the info) suspended in distilled water. We coat the interior of a small, rectantular capillary tubes (brand name and specs) that are initially 100mm in length with bovine serum albumin (info?), blowing excess serum out with pressurized air. This coating will help prevent silica microspheres from adhering to the capillary walls (cite someone that says this maybe?). We then fill the tubes with the silica suspensions, break off any air pockets, and seal the ends with capillary wax (info maybe?). We dip the now-sealed ends in superglue to provide a strong seal for when the centrifuge spins the samples down at high angular acceleration.
+
+ motor (specs), rotary encoder (specs), everything else (specs)
 
 This process is repeated for 16 capillary tubes, with each tube placed into its own channel on the centrifuge plate. Great care is taken to ensure the capillaries are as flat as possible to prevent gravity-driven flow in the solutions. Melted paraffin wax is carefully poured onto the non-imaging parts of each capillary, which, once cooled, adheres the capillaries in place in the channel. Once all 16 capillaries have been adhered, the centrifuge process may begin.
 
 A MATLAB script controls both the centrifuge servo circuit (designed and fabricated by yours truly and also john and cliff) and the camera (brand name here) for imaging. A microcontroller (Arduino Mega) controls (number) pins sending digital and analog signals to the servo circuit. 16 pins control the precision localization of the plate, while three other pins control the centrifuge/servo modes and brake. Upon starting the script, the Arduino pins and camera are initialized, and directories based on the datetime are created for data storage. The centrifuge enters run mode for a preset amount of time, where it spins at the highest attainable speed. After the time runs out, the centrifuge slows down, and the 16 position pins send it to the "16th" capillary location.
 
 Next, the centrifuge carefully pans through each location, collecting an initial "reference" image of each capillary. If all images look acceptable, the script then enters time-lapse mode. Based on a preset time gap, the centrifuge pans through each location and collects a new frame for each capillary, stabilizing each frame relative to its initial "reference" frame and writing this corrected frame to an image file that capillary's image directory. After cycling through each capillary, the script waits for the allotted time, then runs through this process again. This repeats indefinitely, or until the user ends this sequence. The final parts of the script close the camera and clear variables for the next collection.
-
  
 \section{Results}
-\begin{itemize}
-    \item Centrifuge works
-    \item Servo positioning works
-    \item Time lapse works
-    \item Image stabilization, processing
-    \item Preliminary tracking
-    \item Coating tube minimizes sticking
-    \item Removing bubbles
-\end{itemize}
+Preliminary results show that it is possible to centrifuge down samples in capillary tubes such that the majority of the colloids end up on the outer end. By removing air bubbles beforehand, and coating the tubes with bovine serum albumin, we minimize bulk flow and colloids sticking to the glass. Image stabilization removes discrepancies in the servo positioning and enables tracking of particles using packages such as Trackpy.
 
 \section{Discussion/Conclusion}
-\begin{itemize}
-    \item Basic process works
-    \item More work needs done
-    \item Accurate predictions?
-    \item Proof of concept essentially
-\end{itemize}
+While we have good descriptions for regular diffusion and average particles, and have been able to do so for a long time now, we have only recently been able to understand the extremes and characterize their statistical behavior. We have designed, built, and tested an experimental setup that allows us to measure first passage times in colloid diffusion. Further refinement is needed to make complete measurements, but preliminary results are promising, and the concept is sound.
 %%
 
 %\bibliography{scaling}% Produces the bibliography via BibTeX.
