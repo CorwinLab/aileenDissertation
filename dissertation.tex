@@ -19,7 +19,56 @@
 \usepackage[noabbrev]{cleveref}
 \usepackage{graphicx}% Include figure files
 \usepackage{soul}
+\usepackage{float,subcaption}
+\usepackage{graphicx}% Include figure files
+\usepackage{caption}
+\usepackage[letterpaper]{geometry}
+\usepackage{amsmath, amsthm, amsfonts, amsbsy, thmtools, amssymb}
+\declaretheorem{theorem}
+\usepackage{thm-restate}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage[mathscr]{euscript}
+\usepackage{tikz}
+\usepackage{xr}
+\usepackage[normalem]{ulem}
+\usetikzlibrary{arrows}
+\newcommand{\ic}[1]
+{\textcolor{blue}{[#1]}}
+\newcommand{\jh}[1]{\textcolor{red}{[#1]}}
+\newcommand{\Omm}{\Omega_{L,N;m_1,m_2}}
 
+\newcommand{\OLN}{\Omega_{L,N;n_1,n_2}}
+\newcommand{\envnt}{\text{Env}_t^N}
+\def\maxnt{\mathrm{Max}^{N}_t}
+\def\snt{\mathrm{Sam}^{N}_t}
+\newcommand{\mean}[1]{\mathrm{Mean}\left(#1\right)}
+\newcommand{\meanasy}[1]{\mathrm{Mean}^{\textrm{\tiny{asy}}}\!\left(#1\right)}
+\newcommand{\varasy}[1]{\mathrm{Var}^{\textrm{\tiny{asy}}}\!\left(#1\right)}
+\newcommand{\meannum}[1]{\mathrm{Mean}^{\textrm{\tiny{num}}}\!\left(#1\right)}
+\newcommand{\varnum}[1]{\mathrm{Var}^{\textrm{\tiny{num}}}\!\left(#1\right)}
+\newtheorem{Theorem}{Theorem}
+\newtheorem{Notation}{Notation}
+\newtheorem{Remark}{Remark}
+\newtheorem{Corollary}{Corollary}
+\makeatletter
+\newcommand{\hathat}[1]{%
+\begingroup%
+  \let\macc@kerna\z@%
+  \let\macc@kernb\z@%
+  \let\macc@nucleus\@empty%
+  \hat{\raisebox{.4ex}{\vphantom{\ensuremath{#1}}}\smash{\hat{#1}}}%
+\endgroup%
+}
+\makeatother
+
+\newtheorem{Assumption}{Assumption}
+\newtheorem{Claim}{Claim}
+\newtheorem{Lemma}{Lemma}
+\newtheorem{Definition}{Definition}
+\newtheorem{Proposition}{Proposition}
+\renewcommand\theequation{S\arabic{equation}}
+\renewcommand\thefigure{S\arabic{figure}}
 %\usepackage{hyperref}% add hypertext capabilities
 %\usepackage[mathlines]{lineno}% Enable numbering of text and display math
 %\linenumbers\relax % Commence numbering lines
@@ -69,8 +118,9 @@
 %%%CHAPTERS
 \include{ch1_introduction}
 \include{ch2_1Drandompaper}
-\include{ch3_photonpaper}
-\include{ch4_extrawork}
+\include{ch2_supplement}
+\include{ch3_extrawork}
+\include{ch4_photonpaper}
 \include{ch5_conclusion}
 
 %%%APPENDICES
