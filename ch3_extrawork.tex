@@ -1,66 +1,344 @@
-
-\chapter{Colloid diffusion in glass capillary tubes}
+\chapter{Measurements of extreme first passage times in colloid suspensions}
 \label{ch3_extras}
 
 \section{Introduction}
-Understanding the outliers in diffusive processes is the key to describing many important phenomena, such as biological processes dependent on the interactions between strands of DNA, patient zero spreading a virus to a new area in a pandemic, many chemical processes, and how microscopic price fluctuations relate to long-term macroscopic trends in the stock market~\cite{zhang_first-passage_2016, hufnagel_forecast_2004, redner_8_2001, liu_anchoring_2017}. How do we predict the behavior of these furthest or fastest particles? In diffusive environments, where many particles spread outward from their originating source, we can use Einstein’s treatment of diffusion to describe the bulk behavior of the particles~ \cite{einstein_uber_1905, von_smoluchowski_zur_1906}. Einstein described diffusion as particles undergoing independent random walks, but the independent nature of these walks ignores the effect the shared environment has on the particles. As a result, when analyzing the system as a whole, the distributions of outlier particle locations and first passage times should differ from those predicted by Einstein’s theory. We have designed an experimental system to measure the first passage times of micron-sized silica beads suspended in water travelling in narrow, quasi-1D glass capillary tubes to measure these extreme value statistics and demonstrate this difference.
+Understanding the outliers in diffusive processes is the key to describing many important phenomena, such as biological processes dependent on the interactions between strands of DNA~\cite{zhang_first-passage_2016}, a wide variety of biological and chemical processes~\cite{grebenkov_escape_2017,grebenkov_molecular_2021,polizzi_mean_2016,redner_guide_2001,nicholson_extracellular_1998}, and how microscopic price fluctuations relate to long-term macroscopic trends in the stock market~\cite{barney_first-passage-time_2017,liu_anchoring_2017}. How do we predict the behavior of these furthest or fastest particles? In diffusive environments, where many particles spread outward from their originating source, we typically use Einstein’s treatment of diffusion to describe the bulk behavior of the particles~ \cite{einstein_uber_1905, von_smoluchowski_zur_1906, sutherland_lxxv_1905}. Einstein described diffusion as particles undergoing independent random walks, but the independent nature of these walks ignores the effect the shared environment has on the particles. As a result, when analyzing the system as a whole, the distributions of outlier particle locations and extreme first passage times should differ from those predicted by Einstein’s theory. Instead, we can use a biased random walk to describe the system, as in the numerical work done in Chapter \ref{ch2_1Drandom}. To build on these numerical predictions, here we propose an experimental setup to measure distributions of extreme first passage times in a real, physical system.
  
-% \begin{figure}[hb]
-% \begin{center}
-% \includegraphics[width=0.9\columnwidth]{Figures/model_both_sidebyside.png}
-% \caption{\label{fig:1D_BC} 1D visualization of the Einstein and Barraquand-Corwin models, where the red and blue colors indicate the direction of each bias - right and left, respectively - and the color intensity indicates the strength of the bias; for example, a dark red square indicates a strong bias to the right for the particles inhabiting that square. White squares have an equal bias in each direction. Time increases from the bottom of the image toward the top.}
-% \end{center}
-% \end{figure}
+\section{Background}
+While the classical Einstein independent random walk model describes the average behavior well in many systems, there are areas where this theory and its predictions are known to fail. 
+For example, Brownian motion in supercooled liquids and close to jamming~\cite{wang_when_2012}, systems with active matter that adds energy into the environment~\cite{kanazawa_loopy_2020,ramaswamy_mechanics_2010}, or those described by Lévy flights and other anomalous diffusion processes better describe the dynamics~\cite{ghosh_non-universal_2015,levy,bouchaud_anomalous_1990,metzler_brownian_2019} have probability distributions that display exponential tails and other non-Gaussian characteristics and exhibit significant differences for the extreme particles.
+Chapter \ref{ch2_1Drandom} builds on a theoretical model for diffusion that explicitly includes correlations resulting from the shared background environment by modelling diffusion as a random walk with transition probabilities drawn from the beta distribution~ \cite{barraquand_random-walk_2017}. The Barraquand-Corwin model predicts the behavior of the maximum of a large number of ``walkers’’, the particle farthest from the origin at a given time, and reveals a connection to the Kardar-Parisi-Zhang universality class with a related phase transition~ \cite{barraquand_random-walk_2017, barraquand_moderate_2020, le_doussal_diffusion_2017, kardar_dynamic_1986,hass_anomalous_2023}.
+
+Measurements of the time of \emph{first} first passage, the extreme first passage time (EFPT), in physical systems have the potential to unlock new insights into the shared underlying medium of the diffusing particles. An experimental system to image and track colloidal particles diffusing through quasi-1D glass capillary tubes would enable us to measure EFPTs in a real diffusive system. By filling a capillary tube with a colloidal microsphere suspension, centrifuging all colloids to one end of the tube, and then imaging the tubes under a microscope throughout time, we can determine the time it takes the first of all colloids to diffuse to a certain point within the microscope field of view. In order to measure the EFPT variance, we have to do this for many colloidal suspensions. By centrifuging and subsequently collecting concurrent time lapse imaging for multiple capillaries, we can collect many EFPTs in each experimental run. We can then repeat this process until we gather a statistically significant number of EFPTs, and measure the mean and variance of the EFPT distribution. We can alter the properties of the system and explore how adjusting experimental parameters alters these EFPT distributions and their statistics.
+
+Recent theoretical and numerical developments in characterizing EFPTs of systems diffusing in random environments describe an asymptotic theory for how the variance in EFPT scales with particle number $N$ and path length $L$, from systems exceeding $N=10^{28}$ particles down to $N=100$ particles~\cite{hass_first-passage_2024}. As in Chapter \ref{ch2_1Drandom}, which considered extreme particle location, this numerical work found that measurements of the EFPT allows us to separate out information about the random environment from the sampling trajectories within it. For large $N$ systems of path length $L$, the variance is proportional to $\frac{L^4}{(\ln(N))^4}$, and by calculating and subtracting off the sampling variance, one can determine the environmental variance, which should scale as $\frac{L^3}{(\ln(N))^\frac{5}{2}}$~\cite{hass_first-passage_2024}. By varying the concentration of colloids in the capillaries, we can control the number of diffusing colloids, and measure the relationship between the system size and EFPT statistics. 
+
+\begin{figure*}[htp]
+\begin{center}
+\includegraphics[width=0.6\columnwidth]{Figures/colloid-EFPTs.pdf}
+\caption{\label{fig:EFPT-times} Predicted extreme first passage times for $d=1.18\ \mu$m silica colloids suspended in water at room temperature diffusing across distances up to 5mm from the origin. EFPT predictions from the origin to a distance $L$ of 5mm vary from around 10 days for a system of $N=5\times10^9$ colloids (25\% colloids by weight) to nearly 60 days for $N=2\times10^2$ colloids.}
+\end{center}
+\end{figure*}
+
+We can predict the EFPTs we expect to see in a system of some number of colloidal microspheres $N$ by calculating the diffusion coefficient $D$ and using the probability of the position $B(t)$ of a Brownian walker to be found beyond distance $L$ at time $t$, given by
+\begin{equation}
+    P(B(t)>L) = 1-\textrm{erf}\left(\frac{L}{2\sqrt{D t}}\right)
+\end{equation}
+to solve for the value of $t$ where this probability exceeds $1/N$~\cite{redner_guide_2001}. Figure \ref{fig:EFPT-times} displays  predicted EFPT to distances ranging from 0-5mm for systems of $d=1.18\ \mu$m silica colloids suspended in water, with system sizes ranging from $N\approx10^2-10^9$. We can use data collected with various concentrations of colloids to determine, for a given value of $L$, how the system size $N$ affects the EFPT variance and whether the anticipated $\frac{L^3}{(\ln(N))^\frac{5}{2}}$ scaling emerges. We can also use the same data repeatedly to ensure the results hold across $L$ values varying based on the microscope field of view.
+
+Additionally, recent work (in review) on diffusion in random environments also reveals a connection between the variance of the EFPT and an \emph{extreme} diffusion coefficient, providing an additional characterization of the fluctuations of the shared hidden environment made through measurements of the extreme particle statistics~\cite{hass_extreme_2024}. While the regular Einstein diffusion coefficient is determined by particles' average step size, this extreme diffusion coefficient is determined through the variance in both size and direction of a single step resulting from fluctuations in the environment. By changing the properties of the colloids and the medium in which they are suspended, which affect both the Einstein diffusion coefficient and EFPT statistics, we explore any additional changes in the extreme diffusion coefficient and determine its efficacy in better describing these systems. Varying colloid size and material, using fluids of different viscosities, and altering the electrical properties of the particles in suspension all result in changes to the diffusion coefficient. By measuring the effect of these both on the EFPT and the extreme diffusion coefficient, countless new insights into the underlying physical process of diffusion and how we describe and make predictions for these systems could be accessed.
+
+
+\begin{figure*}[htp]
+\begin{center}
+\includegraphics[width=0.55\columnwidth]{Figures/microscope_centrifuge.png}
+\caption{\label{fig:CADrender} Render of the experimental setup, using CAD designs. The centrifuge base plate, rotor plate, support arm, and braces were designed and machined specifically for use with the motor, rotary encoder, and tachometer. The rotor plate is designed with 16 channels of two depths, fabricated on a CNC mill for precision, allowing different capillary widths to rest securely in the plate. Circular holes allow light from the microscope to pass through the capillaries for imaging. While the capillaries may be up to 100mm long, only the first few millimeters from the outer edge can be imaged; see Figure \ref{fig:EFPT-times}, where such distances correspond to EFPTs on the order of multiple days or even weeks. The microscope shown is an approximate model of the Nikon Eclipse FN-1 used in this experiment, with a camera attached to the C-mount.}
+\end{center}
+\end{figure*}
+
+\section{Experimental design}
+To accurately measure EFPTs in suspensions of colloidal microspheres, we require as high precision as is feasibly possible on capillary positioning -- in practice, this is down to a few millimeters. In fabricating the rotor plate, we used high precision CNC milling machines and procedures, easy-to-machine cast aluminum to ensure the plate was as flat as possible, designed the system symmetrically, and took great care to ensure the rotor plate was extremely level once assembled to avoid gravity-driven flow inside the capillaries. It is important that the colloids be density matched well enough that they do not sediment quickly due to gravity, but can still be centrifuged in a reasonable time limit. Silica was chosen because its density is approximately 2 times that of water, which delays its sedimentation under gravity while completely centrifuging to the capillary edge in well under 30 minutes at the rotor's top speed. Additional work can be done in image analysis and post processing to localize particles with high precision. To avoid missing any colloids in the imaging process, we balance the magnification strength with the resulting depth of field to maximize the number of colloids in focus, use colloids with a mismatched index of refraction from the medium, use the lowest possible numerical aperture, and select very thin and narrow (varying from 0.2-0.4mm x 2-4mm dimensions) flat rectangular capillaries. Initial data has been collected at 10x magnification, which allows the majority of the 1$\mu$m particles in the solution to be visualized under the microscope. If this does not provide enough depth of field, 4x magnification and subpixel resolution particle localization methods could potentially be used to retrieve enough information for EFPT measurement~\cite{parthasarathy_rapid_2012}.
+
+The microscope-centirfuge system developed under these considerations is shown in Figure \ref{fig:CADrender}. The centrifuge consists of a flat rotor plate, which holds 16 samples inside small windows left open for imaging, fixed to a DC motor (McMaster-Carr 59835K62) via screw-clamp bushing (McMaster-Carr 5926K16). The angular position of the plate is encoded through the use of an incremental optical rotary motion encoder (McMaster-Carr, 9749T2). A tachometer is used to record angular velocity, creating a type 2 servo system and thereby achieving translational positioning precision down to 3mm. A 12V sealed linear solenoid (McMaster-Carr 69905K173) acts as a brake to assist in final position stabilization. An aluminum base plate and support provide stability by bolting the entire system into an optics table. A microcontroller (Arduino Mega) runs an analog servo system, using a total of 19 digital pins, where 3 pins each trigger the brake, run the centrifuge at full speed, and turn the servo mode on or off. In servo mode, the remaining 16 digital pins write the centrifuge to a 16-bit location. The centrifuge speed can exceed 1000 RPM and effectively sediments samples of silica microspheres inside the capillary tubes as required.
+
+An upright fixed stage microscope (Nikon ECLIPSE FN1) with a 10x objective, with a camera (Teledyne Blackfly S USB3) connected to the C-mount, is used to image silica microsphere (Cospheric monodisperse silica microspheres, 1.18 $\mu$m diameter, 2.5\% CV) suspensions in deionized water. Suspensions are typically around 1\% silica by weight concentration, and are sonicated upon formulation to disperse aggregates. In future work, the concentration should be varied to control the number of diffusing colloids $N$. We coat the interior of 100mm long rectantular capillary tubes (Vitrocom VitroTubes™ 5003, 5004), 0.3mm/0.4mm wide and 0.03mm/0.04mm tall, with bovine serum albumin (BSA), flushing out the excess with pressurized air. This interior coating helps prevent  microspheres from adhering to the capillary walls. We then fill the tubes with the silica suspensions, break off any visible air pockets, and seal the ends with capillary wax (Sigillum wax sealant). We dip the ends in cyanoacrylate glue to provide a strong seal for when the centrifuge spins the samples at high speeds. The capillary surface is then gently cleaned with isopropyl alcohol and lens paper and placed into its channel in the rotor plate. This process is repeated for 16 capillary tubes, taking care to ensure the capillaries are placed as level as possible to prevent gravity-driven flow. Melted paraffin wax is carefully poured onto the non-imaging parts of each capillary, which, once cooled, adheres the capillaries in place in the channel.
 
 % \begin{figure*}[htp]
 % \begin{center}
-% \includegraphics[width=0.9\columnwidth]{Figures/TriangleGrowth-01.png}
-% \caption{\label{fig:comparison} Einstein and Barraquand-Corwin diffusion models. Einstein's diffusion model has an equal bias in each direction, and the particles diffuse accordingly. For the Barraquand-Corwin model, the red and blue colors and color intensity indicate the direction and strength of the bias as in Figure \ref{fig:1D_BC}. Time increases from the bottom of the image toward the top. There is a noticeable difference in how the outlier particles for each model spread in the same amount of time.}
+% \includegraphics[width=0.9\columnwidth]{Figures/colloid-EFPTs-logy.pdf}
+% \caption{\label{fig:EFPT-times} Predicted extreme first passage times for distances up to 3mm from the origin, which vary from around 3.5 days for $5\times10^9$ colloids and up to 3 weeks for $2\times10^2$ colloids. }
 % \end{center}
 % \end{figure*}
 
-\section{Background}
-\acg{[determine how much of this is necessary given Chapter \ref{1Drandom}'s existence - this is mostly from comp exam and needs rewritten]}
-
-While Einstein's traditional independent random walk model describes the average behavior well in many systems, there are areas where this theory and its predictions are known to fail. Some systems, such as Brownian motion in supercooled liquids and close to jamming, flow and drainage, friction, and turbulence, where probability distributions display exponential tails and other non-Gaussian characteristics~\cite{wang_when_2012, metzler_brownian_2019}. Additionally, Einstein’s theory fails to describe the full dynamics of active matter, where particles inject energy into the environment; such is the case with self-propelled particles exhibiting loopy trajectories and active particles capable of absorbing and dissipating energy~\cite{kanazawa_loopy_2020, ramaswamy_mechanics_2010}. The difference between systems with these dynamic particles and those well characterized by independent random walks is well described by contrasting these probability distributions, especially in the extremes.
-
-\acg{[I need to revisit this claim] Studying and modelling first-passage particle behavior has been done, but this work often neglects systems where particle motion is correlated}~ \cite{grebenkov_exact_2020}. Guillaume Barraquand and Ivan Corwin developed a theoretical model for diffusion that explicitly includes correlations resulting from the shared background environment by modelling diffusion as a random walk with transition probabilities drawn from the beta distribution~ \cite{barraquand_random-walk_2017}. The Barraquand-Corwin model predicts the behavior of the maximum of a large number of ``walkers’’ and reveals a connection to the Kardar-Parisi-Zhang universality class with a related phase transition~ \cite{barraquand_random-walk_2017, barraquand_moderate_2020, le_doussal_diffusion_2017, kardar_dynamic_1986}. In times comparable to $log\left(N\right)$, there is a connection between the large deviations of transition probabilities in a random walk in random environment (RWRE) and the Kardar-Parisi-Zhang (KPZ) universality class's Tracy-Widom GUE distribution [cite lots of papers, see Hass paper]. In  the $log\left(N\right)^{2}$ time frame, the Tracy-Widom GUE distribution is replaced by that of the KPZ equation [also cite things from Hass paper, and Hass paper]. Numerical simulations from Chapter \ref{1Drandom} confirmed these scalings in these regimes.
-
-Further work done by Hass et al\acg{[cite the FPT paper(s)]} describes how the first passage time scales with particle number.
-
-%
-
-\begin{figure*}[htp]
-\begin{center}
-\includegraphics[width=0.35\columnwidth]{Figures/microscope_centrifuge.png}
-\caption{\label{fig:CADrender} Experimental setup}
-\end{center}
-\end{figure*}
-
-\acg{[first draft of everything below this point]}
-
-\section{Experimental design}
-
-To measure EFPTs in a physical system of colloids, we developed a microscope-centirfuge system, shown in Figure \ref{fig:CADrender}. The centrifuge consists of a flat rotor plate, which holds 16 samples and inside gaps for imaging, fixed to A DC motor (McMaster-Carr 59835K62) via screw-clamp bushing (McMaster-Carr 5926K16). Angular position of the plate is encoded by 16 bits via incremental optical rotary motion encoder (McMaster-Carr, 9749T2). By also tracking angular velocity via tachometer, we get down to 3mm positioning precision. A 12V sealed linear solenoid (McMaster-Carr 69905K173) acts as a brake to help lock in the final position. A custom machined aluminum base plate and support arm bolted to the optics table provide stability. A microcontroller (Arduino Mega) controls an external analog servo system, using a total of 19 digital pins -- 1 pin each to trigger the brake, turn servo mode on/off, and run the centrifuge at full speed outside of servo mode; in servo mode, 16 digital pins write a 16-bit location. The top speed of the centrifuge is currently unknown, but likely exceeds 1000 RPM. \acg{(mayhaps I should try to cover the holes and measure this again)}
-
-An upright fixed stage microscope (Nikon ECLIPSE FN1) with either 4x or 10x objective (it is switchable, 4x gets more FOV but idk what it does about depth of field) with a camera (Teledyne Blackfly S USB3) is used to image silica microspheres (Cospheric monodisperse silica microspheres, 1.18 $\mu$m diameter) suspended in deionized (maybe bad?) water and sonicated to disperse aggregates, at a concentration of 1\% by volume. We coat the interior of 100mm long rectantular capillary tubes (Vitrocom VitroTubes™ 5003, 5004), 0.3mm/0.4mm wide and 0.03mm/0.04mm tall, with bovine serum albumin (BSA), flushing out the excess with pressurized air. This interior coating will help prevent silica microspheres from adhering to the capillary walls \acg{(cite someone that says this maybe?)}. We then fill the tubes with the silica suspensions, break off any air pockets, and seal the ends with capillary wax (Sigillum wax sealant). We dip the now-sealed ends in cyanoacrylate glue to provide a strong seal for when the centrifuge spins the samples down at high angular acceleration. The capillary surface is then cleaned with isopropyl alcohol and lens paper.
-
-This process is repeated for 16 capillary tubes, with each tube placed into its own channel on the centrifuge plate. Care is taken to ensure the capillaries are as level/flat as possible to prevent gravity-driven flow in the solutions. Melted paraffin wax is carefully poured onto the non-imaging parts of each capillary, which, once cooled, adheres the capillaries in place in the channel. Once all 16 capillaries have been adhered, the centrifuge process may begin.
-
-A MATLAB script controls both the Arduino for centrifuge operation and the camera for imaging. Upon starting the script, the Arduino pins and camera are initialized, and directories based on the datetime are created for data storage. The centrifuge enters run mode for a preset amount of time, where it spins at the highest attainable speed. After the time runs out, the centrifuge slows down, and the 16 position pins send it to the "16th" capillary location. The centrifuge then carefully pans through each location, collecting an initial "reference" image of each of the 16 capillaries. The script then enters time-lapse mode, where, based on a preset time gap, the centrifuge pans through each location and collects a new frame for each capillary. Each frame is stabilized relative to its initial "reference" frame and writing this corrected frame to an image file that capillary's image directory. After cycling through each capillary, the system pauses for the allotted time, then cycles through to collect and stabilize frames again. This repeats indefinitely, or until the user ends this sequence. The final parts of the script close the camera and clear all variables for the next collection.
+A MATLAB script, located at the end of this chapter in Section \ref{ch3_supp}, controls both the Arduino for centrifuge operation and the camera for imaging. Upon starting the script, the Arduino pins and USB camera are initialized, and directories based on the datetime are created for data storage. The centrifuge enters ``run'' mode for a preset amount of time, where it spins at the highest attainable speed. After the time runs out, the centrifuge slows down, switches to ``servo'' mode, and the 16 position pins send it to the "16th" capillary location for consistent positioning. The centrifuge then carefully pans through each of the capillary locations, collecting an initial "reference" image of each one. After the user verifies that all capillaries are in frame and that the centrifuge process has been successful, the script enters time-lapse mode. On a preset time interval, the centrifuge pans through each location and collects a new frame for each capillary. Each frame is stabilized relative to its initial "reference" frame and the stabilized image is written to an image file inside that capillary's image directory. After cycling through each capillary, the system pauses for the allotted time interval, then cycles through to collect and stabilize frames again. This process repeats until the user ends this sequence, and the final parts of the script close the camera and clear all variables for the next collection.
  
-\begin{figure*}[htp]
+\begin{figure*}[hb]
 \begin{center}
-\includegraphics[width=0.9\columnwidth]{Figures/capillaries.png}
-\caption{\label{fig:caps} Examples of imaged capillaries}
+\includegraphics[width=0.8\columnwidth]{Figures/lapse_start-end.pdf}
+\caption{\label{fig:start-end} Examples of imaged capillary at start of time lapse and 300 frames later. Colloids enter from the top left corner, suggesting that the capillary was placed at a slight angle and that gravity is drawing colloids to the upper capillary wall.}
 \end{center}
 \end{figure*}
 
-\section{Results}
-Preliminary results show that it is possible to centrifuge down samples in capillary tubes such that the majority of the colloids end up on the outer end. By removing air bubbles beforehand, and coating the tubes with bovine serum albumin, we minimize bulk flow and colloids sticking to the glass. Image stabilization removes discrepancies in the servo positioning and enables tracking of particles using packages such as Trackpy. Blah blah Figure \ref{fig:caps} shows issues. Would be nice to run tracking on sequence but idk if I'll get to that or not.
+\begin{figure*}[ht]
+\begin{center}
+\includegraphics[width=0.9\columnwidth]{Figures/lapse_edits.pdf}
+\caption{\label{fig:edits} Examples of edits that can be made to highlight features in images of capillaries. The left image has had the contrast increased, the center image has also been run through a bandpass filter, and the right image has additionally had objects enhanced via the Maximum filter.}
+\end{center}
+\end{figure*}
 
-\section{Discussion/Conclusion}
-While we have good descriptions for regular diffusion and average particles, and have been able to do so for a long time now, we have only recently been able to understand the extremes and characterize their statistical behavior. We have designed, built, and tested an experimental setup that allows us to measure first passage times in colloid diffusion. Further refinement is needed to make complete measurements, but preliminary results are promising, and the concept is sound.
+\section{Preliminary results}
+To date, this work has demonstrated that it is possible to centrifuge down samples in capillary tubes such that the majority of the colloids end up on the outer end and utilize microscopy to record colloid movement a given distance from that outer edge. By removing air bubbles beforehand, and coating the tubes with bovine serum albumin, we minimize bulk flow and colloids sticking to the glass. Image stabilization removes discrepancies in the servo positioning and enables tracking of particles using packages such as Trackpy. Work remains to be done in determining the appropriate time lapse intervals to keep particles linked between frames while minimizing the amount of data that must be stored for each experimental run.
+
+Figure \ref{fig:start-end} displays two example frames from the same capillary at different points of the time lapse. After 15 hours, a large number of colloids have entered the frame from the upper left corner. This is significantly quick for bulk flow undergoing only diffusion, and indicates that there are likely other factors involved creating net movement inside the capillary.
+
+\begin{figure*}[htp]
+\begin{center}
+\includegraphics[width=0.8\columnwidth]{Figures/bubbles.pdf}
+\caption{\label{fig:caps} Examples of an air bubble inside a capillary, and how it affects colloid centrifuging and diffusion. The left frame was captured immediately after centrifuging, and the right frame was taken approximately 50 hours later.}
+\end{center}
+\end{figure*}
+
+\begin{figure*}[htp]
+\begin{center}
+\includegraphics[width=0.9\columnwidth]{Figures/problems.pdf}
+\caption{\label{fig:problems} Other issues encountered include capillaries placed at an angle (left), servo positioning failures (center), and capillaries that are disturbed from the original placement and end up out of the microscope focus (right).}
+\end{center}
+\end{figure*}
+
+Preliminary work on image processing can be seen in Figure \ref{fig:edits}, using the chronologically later frame (right) in \ref{fig:start-end}. By increasing contrast and using filtering, we can make individual colloids stand out more against the background and improve the conditions for using localization and tracking methods. More work can be done to select the optimal methods for reducing noise, eliminating the background, removing spurious colloids stuck to the glass, highlighting moving colloids, and dealing with other imperfections that arise throughout the time lapse.
+
+In Figure \ref{fig:caps} and \ref{fig:problems}, we see a few of the major barriers to collecting accurate diffusive EFPTs. The air pocket in Figure \ref{fig:caps} prevented the colloids from sedimenting at the outer end of the capillary, and introduces additional forces on the fluid and colloids that prevent simple diffusion from being the only process creating translational movement. This issue is mitigated by removing air pockets visible when filling the capillary. Figure \ref{fig:problems} shows the more prevalent and difficult to resolve issues impeding progress; from capillaries placed unknowingly at an angle, to error in servo positioning leaving part or all of the capillary out of the field of view, to capillaries not flush with the very bottom of the rotor channels, it can still be difficult to eliminate gravity-driven flows and ensure that imaging can be done as accurately as possible. By running a check before sealing capillaries in place with wax, some of these errors can be mitigated; however, it can be unclear that capillaries are angled and the centrifuge process can still introduce enough unwanted movement to displace one or two of them from the focal point. 
+
+Finally, it is unclear exactly what distance the microscope field of view is from the origin, or what the ``origin'' is in a system of colloids sedimented at the far end of a capillary. It is clear from Figure \ref{fig:EFPT-times} that even very minute differences should play a significant role in resulting EFPTs. With large system sizes, we cannot assume all particles are starting from the exact same location. How much uncertainty does this introduce into the final EFPT? How can we factor this error in starting position into the total calculation of $L$? Is the distance from origin to $L$ large enough that it doesn't matter? Is the distance from origin to $L$ too small to use the results from the EFPT numerical work~\cite{hass_first-passage_2024,hass_extreme_2024}? Is the distance from origin to $L$ too large to even get results without bulk flow driving particles outside of simple diffusion? Can drift be accounted for within the theoretical framework? These questions, and undoubtedly countless others, are currently unanswered and introduce barriers to measuring colloid EFPTs. Once addressed, it is likely that this system can be used to make EFPT measurements and draw connections between the distribution of EFPTs and properties of the underlying hidden environment.
+
+
+\section{Conclusion}
+While we have historically been able to describe diffusive systems and their average particles, we have only recently been able to understand the extremes and characterize their statistical behavior. In doing so, we have revealed the potential to use measurements of extreme value statistics to uncover information about the underlying, correlated environment. By measuring extreme particle location and extreme first passage times, we can determine statistical properties that describe the environment that influences the diffusing particles' behavior. We have designed, built, and tested an experimental setup that will enable future measurements of EFPTs in colloid diffusion. Preliminary results show that this setup can successfully centrifuge colloids down and subsequently image colloid movement inside the capillary tubes. Further refinement on both the data collection and analysis processes will be necessary to make complete and accurate EFPT measurements, but once available, these measurements have great potential to provide new and impactful insights into understanding the hidden environment in which particles diffuse, with applications across a wide range of systems~\cite{iyer-biswas_first_2015, metzler_first-passage_2014,waxman_diffusion_2017,liu_anchoring_2017,grebenkov_molecular_2021,polizzi_mean_2016,redner_guide_2001,nicholson_extracellular_1998}
+
+
+\newpage
+\section{Supplementary Material}
+\label{ch3_supp}
+
+\subsection{MATLAB script}
+\label{sec:script}
+\begin{lstlisting}[style=Matlab-editor]
+% Initialize arduino and servo control pins
+a = arduino("COM5", "Mega2560");
+
+brakePin = 'D10';
+servoPin = 'D11';
+runPin = 'D12';
+% Position control - 16 bits
+b1 = 'D22'; %b1 - most significant bit (MSB)
+b2 = 'D24';
+b3 = 'D26';
+b4 = 'D28';
+b5 = 'D30';
+b6 = 'D32';
+b7 = 'D34';
+b8 = 'D36';
+b9 = 'D23';
+b10 = 'D25';
+b11 = 'D27';
+b12 = 'D29';
+b13 = 'D31';
+b14 = 'D33';
+b15 = 'D35';
+b16 = 'D37'; %b16 - least significant bit (LSB)
+
+% Configure servo pins - set to output because we want to write info to them, rather than read data off of them
+configurePin(a,brakePin,'digitalOutput') %brake
+configurePin(a,servoPin,'digitalOutput') %servo
+configurePin(a,runPin,'digitalOutput') %run
+configurePin(a,b1,'digitalOutput') %b1 - MSB
+configurePin(a,b2,'digitalOutput')
+configurePin(a,b3,'digitalOutput')
+configurePin(a,b4,'digitalOutput')
+configurePin(a,b5,'digitalOutput')
+configurePin(a,b6,'digitalOutput')
+configurePin(a,b7,'digitalOutput')
+configurePin(a,b8,'digitalOutput')
+configurePin(a,b9,'digitalOutput')
+configurePin(a,b10,'digitalOutput')
+configurePin(a,b11,'digitalOutput')
+configurePin(a,b12,'digitalOutput')
+configurePin(a,b13,'digitalOutput')
+configurePin(a,b14,'digitalOutput')
+configurePin(a,b15,'digitalOutput')
+configurePin(a,b16,'digitalOutput') %b16 - LSB
+
+% Set to initial position and turn on servo
+position = [0,1,1,0,1,0,1,0,1,0,1,0,0,0,0,0];
+writePosition(a,position);
+writeDigitalPin(a,brakePin,0);  % brake off
+writeDigitalPin(a,servoPin,1);  % servo on
+writeDigitalPin(a,runPin,0);    % not spinning
+pause(1);
+%% 
+
+% % Initialize camera
+vidobj = cameraInitialization();
+%% 
+
+% Create folders for file saving
+t = datetime('now','Format','MM-d-y');
+d = yyyymmdd(t);
+name = "files-" + d;
+mkdir(['data-' int2str(d) '\']);
+mkdir(['data-' int2str(d) '\capillary01\']);
+mkdir(['data-' int2str(d) '\capillary02\']);
+mkdir(['data-' int2str(d) '\capillary03\']);
+mkdir(['data-' int2str(d) '\capillary04\']);
+mkdir(['data-' int2str(d) '\capillary05\']);
+mkdir(['data-' int2str(d) '\capillary06\']);
+
+%% 
+% Run centrifuge for set number of seconds 
+runTime = 2400;                 % how long to run centrifuge
+writeDigitalPin(a,runPin,1);    % run centrifuge
+pause(runTime);                 % wait 'runTime' number of seconds
+writeDigitalPin(a,runPin,0);    % stop running centrifuge
+pause(5);                       % wait for slow down
+position = [0,1,1,0,1,0,1,0,1,0,1,0,0,0,0,0]; 
+writePosition(a,position);      % preset to position 16 as cycle "end"
+
+%% 
+% Collect test images to make sure we're good
+
+
+% Store first frames in array for access in stabilization function
+referenceFrames = {};
+
+% set to position 16 for correct first frame
+position = [0,1,1,0,1,0,1,0,1,0,1,0,0,0,0,0]; 
+writePosition(a,position);
+pause(1);
+
+% first position: 1000 1111 0010 1100
+capillaryNumber = 1;
+position = [1,0,0,0,1,1,1,1,0,0,1,0,0,1,1,0];
+writePosition(a,position);
+pause(3);    % wait for three seconds; servo finds home 
+writeDigitalPin(a, brakePin, 1);
+pause(1);    % wait for a second
+pic = getsnapshot(vidobj);
+pause(1);
+writeDigitalPin(a, brakePin, 0);
+referenceFrames = [referenceFrames, pic];
+imwrite(pic,gray,sprintf(['data-' int2str(d) '/capillary%02d/frame%04d.png'],capillaryNumber,0));
+
+% second position: 1000 1100 1011 1100
+capillaryNumber = 2;
+position = [1,0,0,0,1,1,0,0,1,0,1,1,1,0,1,0];
+writePosition(a,position);
+pause(1);    % wait for a second
+writeDigitalPin(a, brakePin, 1);
+pause(1);    % wait for a second
+pic = getsnapshot(vidobj);
+pause(1);
+writeDigitalPin(a, brakePin, 0); 
+referenceFrames = [referenceFrames, pic];
+imwrite(pic,gray,sprintf(['data-' int2str(d) '/capillary%02d/frame%04d.png'],capillaryNumber,0))
+
+% third position: 1000 1010 0100 1100
+capillaryNumber = 3;
+position = [1,0,0,0,1,0,1,0,0,1,0,0,1,0,1,0];
+writePosition(a,position);
+pause(1);    % wait for a second
+writeDigitalPin(a, brakePin, 1);
+pause(1);    % wait for a second
+pic = getsnapshot(vidobj);
+pause(1);
+writeDigitalPin(a, brakePin, 0); 
+referenceFrames = [referenceFrames, pic];
+imwrite(pic,gray,sprintf(['data-' int2str(d) '/capillary%02d/frame%04d.png'],capillaryNumber,0))
+    
+%   repeat for remaining capillaries (to 16)  
+%   TO DO: rewrite into one function that takes each position from a list instead of repeating code block 16 times
+
+%% 
+% Set time between frames (seconds)
+frametime = 240;
+
+% set to position 16 for correct first frame
+position = [0,1,1,0,1,0,1,0,1,0,1,0,0,0,0,0]; 
+writePosition(a,position);
+pause(1);
+
+% Pass through positions, capturing and saving an image each time
+for frameNumber=1:1999
+    % first position: 1000 1111 0010 1100
+    capillaryNumber = 1;
+    position = [1,0,0,0,1,1,1,1,0,0,1,0,0,1,1,0];
+    writePosition(a,position);
+    pause(3);                           % wait for three seconds; servo finds home
+    writeDigitalPin(a, brakePin, 1);    % brake on
+    pause(1);                           % let things settle
+    pic = getsnapshot(vidobj);          % take picture
+    stablePic = imageStabilization(pic,referenceFrames,capillaryNumber);
+    pause(1);
+    writeDigitalPin(a, brakePin, 0);    % brake off, write image
+    imwrite(stablePic,sprintf(['data-' int2str(d) '/capillary%02d/frame%04d.png'],capillaryNumber,frameNumber));
+    
+    % second position: 1000 1100 1011 1100
+    capillaryNumber = 2;
+    position = [1,0,0,0,1,1,0,0,1,0,1,1,1,0,1,0];
+    writePosition(a,position);
+    pause(1);    % wait for a second
+    writeDigitalPin(a, brakePin, 1);
+    pause(1);
+    pic = getsnapshot(vidobj);
+    stablePic = imageStabilization(pic,referenceFrames,capillaryNumber);
+    pause(1);
+    writeDigitalPin(a, brakePin, 0); 
+    imwrite(stablePic,sprintf(['data-' int2str(d) '/capillary%02d/frame%04d.png'],capillaryNumber,frameNumber));
+    
+    % third position: 1000 1010 0100 1100
+    capillaryNumber = 3;
+    position = [1,0,0,0,1,0,1,0,0,1,0,0,1,0,1,0];
+    writePosition(a,position);
+    pause(1);
+    writeDigitalPin(a, brakePin, 1);
+    pause(1);
+    pic = getsnapshot(vidobj);
+    stablePic = imageStabilization(pic,referenceFrames,capillaryNumber);
+    pause(1);
+    writeDigitalPin(a, brakePin, 0); 
+    imwrite(stablePic,sprintf(['data-' int2str(d) '/capillary%02d/frame%04d.png'],capillaryNumber,frameNumber));
+
+%   repeat for remaining capillaries (to 16)  
+%   TO DO: rewrite into one function that takes each position from a list instead of repeating code block 16 times
+
+    pause(180)
+end
+
+%% 
+% close camera, clear everything
+stop(vidobj)
+clear a
+clear vidobj
+
+%% 
+function writePosition(a,b)
+    writeDigitalPin(a, 'D22', b(1));
+    writeDigitalPin(a, 'D24', b(2));
+    writeDigitalPin(a, 'D26', b(3));
+    writeDigitalPin(a, 'D28', b(4));
+    writeDigitalPin(a, 'D30', b(5));
+    writeDigitalPin(a, 'D32', b(6));
+    writeDigitalPin(a, 'D34', b(7));
+    writeDigitalPin(a, 'D36', b(8));
+    writeDigitalPin(a, 'D23', b(9));
+    writeDigitalPin(a, 'D25', b(10));
+    writeDigitalPin(a, 'D27', b(11));
+    writeDigitalPin(a, 'D29', b(12));
+    writeDigitalPin(a, 'D31', b(13));
+    writeDigitalPin(a, 'D33', b(14));
+    writeDigitalPin(a, 'D35', b(15));
+    writeDigitalPin(a, 'D37', b(16));
+end
+
+function vid = cameraInitialization
+    % Initialize video - create video object, open camera
+    vid = videoinput("gentl",1,"Mono8");
+    triggerconfig(vid,"manual");     % allows snapshots whenever triggered by getsnapshot(vidobj)
+    set(vid,'FramesPerTrigger',1,'Timeout',5); 
+    start(vid)            
+    
+    % Take a test pic, display it - helps to know if the camera and computer are 
+    % communicating before running the centrifuge
+    %frame = getsnapshot(vid);
+    imagesc(getsnapshot(vid))  % display image
+end
+
+function stabilizedFrame = imageStabilization(unstableFrame,referenceFrames,capillaryNumber)
+    referenceFrame = referenceFrames{capillaryNumber}(:, 1:2001, :);
+    referenceImage = im2double(referenceFrame);
+    [output, Greg] = dftregistration(fft2(referenceImage),fft2(unstableFrame(:, 1:2001, :)),100);
+    stabilizedFrame = mat2gray(abs(ifft2(Greg)));
+end
+\end{lstlisting}
 %%
 
 %\bibliography{scaling}% Produces the bibliography via BibTeX.
